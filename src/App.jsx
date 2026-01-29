@@ -174,10 +174,13 @@ const About = () => (
              <p className="text-3xl font-black mb-1">10+</p>
              <p className="text-secondary text-sm uppercase tracking-wider">Years Experience</p>
           </div>
-          <div className="visual-box">
-             <p className="text-3xl font-black mb-1">Cloud</p>
-             <p className="text-secondary text-sm uppercase tracking-wider">Infrastructure Expert</p>
-          </div>
+          <a href="https://github.com/sidneyowallah/dholuo-tts" target="_blank" rel="noopener noreferrer" className="visual-box featured-project no-underline">
+             <div className="flex justify-between items-start w-full">
+               <p className="text-2xl font-black mb-1">Dholuo TTS</p>
+               <ExternalLink size={18} className="text-accent-primary" />
+             </div>
+             <p className="text-secondary text-sm uppercase tracking-wider">AI Text-to-Speech Engine</p>
+          </a>
         </div>
       </div>
     </div>
