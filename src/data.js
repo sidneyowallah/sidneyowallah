@@ -74,12 +74,22 @@ export const data = {
     {
       school: "Arizona State University",
       degree: "Master of Science - Information Technology",
-      period: "Spring 2023"
+      period: "2021 - 2023",
+      highlights: [
+        "Specialized in Cloud Computing and Information Security",
+        "Advanced coursework in Network Forensics, Enterprise Infrastructure, and Cybersecurity Operations",
+        "GPA: 3.9/4.0"
+      ]
     },
     {
       school: "Arizona State University",
       degree: "Bachelor of Science - Information Technology",
-      period: ""
+      period: "2013 - 2015",
+      highlights: [
+        "Focused on Software Development and Information Management",
+        "Capstone project: Automated Network Monitoring System",
+        "Dean's List recipient for academic excellence"
+      ]
     }
   ],
   skills: {
@@ -113,6 +123,22 @@ export const data = {
     {
       name: "AWS Certified Cloud Practitioner",
       link: "#"
+    }
+  ],
+  projects: [
+    {
+      id: "01",
+      title: "Dholuo POS-Aware TTS",
+      description: "A specialized Text-to-Speech pipeline designed for the Dholuo language, featuring part-of-speech awareness for accurate tone and pronunciation generation.",
+      technologies: ["Python", "PyTorch", "Gradio", "Hugging Face"],
+      link: "https://github.com/sidneyowallah/dholuo-tts"
+    },
+    {
+      id: "02",
+      title: "Cloud Infrastructure as Code",
+      description: "Automated provisioning of scalable cloud environments using AWS CDK and Terraform, implementing best practices for security and performance.",
+      technologies: ["AWS CDK", "Terraform", "Python", "CloudFormation"],
+      link: "https://github.com/sidneyowallah"
     }
   ]
 };

@@ -15,18 +15,18 @@ const Navbar = ({ theme, toggleTheme }) => {
   return (
     <nav className="navbar">
       <div className="container">
-        <a href="#home" onClick={scrollToSection('home')} className="logo font-bold text-xl uppercase tracking-widest no-underline text-accent-primary">
-          SY. <span className="text-secondary opacity-50">/</span>
+        <a href="#home" onClick={scrollToSection('home')} className="logo font-bold text-xl uppercase tracking-widest no-underline" style={{ color: 'var(--text-primary)' }}>
+          SO.
         </a>
         <div className="flex items-center gap-8">
           <div className="nav-links">
             <a href="#about" onClick={scrollToSection('about')}>About</a>
+            <a href="#projects" onClick={scrollToSection('projects')}>Projects</a>
             <a href="#experience" onClick={scrollToSection('experience')}>Experience</a>
-            <a href="#skills" onClick={scrollToSection('skills')}>Skills</a>
             <a href="#education" onClick={scrollToSection('education')}>Education</a>
           </div>
           <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme">
-            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+            {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
           </button>
         </div>
       </div>
@@ -36,18 +36,18 @@ const Navbar = ({ theme, toggleTheme }) => {
 
 const Hero = () => (
   <section className="hero" id="home">
-    <div className="container animate-fade-in">
-      <h1 className="gradient-text">{data.personal.name}</h1>
-      <p className="font-medium tracking-wide border-y border-white/5 py-4 inline-block uppercase text-sm mb-8">{data.personal.title}</p>
+    <div className="container animate-fade-in" style={{ textAlign: 'center' }}>
+      <h1 style={{ color: 'var(--text-primary)' }}>{data.personal.name}</h1>
+      <p style={{ fontSize: '1rem', fontWeight: '400', margin: '0 auto 2rem' }}>{data.personal.title}</p>
       <div className="social-links">
         <a href={`mailto:${data.personal.email}`} title="Email Me">
-          <Mail size={20} />
+          <Mail size={18} />
         </a>
         <a href={data.personal.linkedin} target="_blank" rel="noopener noreferrer" title="LinkedIn Profile">
-          <Linkedin size={20} />
+          <Linkedin size={18} />
         </a>
         <a href={data.personal.github} target="_blank" rel="noopener noreferrer" title="GitHub Profile">
-          <Github size={20} />
+          <Github size={18} />
         </a>
       </div>
     </div>
@@ -56,35 +56,38 @@ const Hero = () => (
 
 const SectionHeader = ({ title, subtitle }) => (
   <div className="mb-12">
-    <h2 className="text-4xl font-bold mb-4">{title}</h2>
+    <h2 className="text-4xl font-bold mb-4" style={{ fontSize: '2rem', fontWeight: '500' }}>{title}</h2>
     {subtitle && <p className="text-secondary max-width-600">{subtitle}</p>}
   </div>
 );
 
 const Experience = () => (
-  <section id="experience" className="bg-secondary">
+  <section id="experience">
     <div className="container">
-      <SectionHeader title="Work Experience" subtitle="A timeline of my professional journey in software engineering." />
-      <div className="experience-list">
-        {data.experience.map((exp, idx) => (
-          <div key={idx} className="experience-item">
-            <div className="exp-header">
-              <div>
-                <span className="exp-company">{exp.company}</span>
-                <h3 className="mt-1">{exp.role}</h3>
+      <div className="experience-layout">
+        <div className="experience-header-wrapper">
+          <h2 className="experience-title">Experience<span className="title-dash"></span></h2>
+        </div>
+        <div className="experience-timeline">
+          {data.experience.map((job, idx) => (
+            <div key={idx} className="experience-item">
+              <div className="experience-card">
+                <div className="experience-card-header">
+                  <div className="role-company">
+                    <h3 className="experience-role">{job.role}</h3>
+                    <p className="experience-company">{job.company}</p>
+                  </div>
+                  <span className="experience-date">{job.period}</span>
+                </div>
+                <ul className="experience-highlights">
+                  {job.highlights.map((highlight, i) => (
+                    <li key={i}>{highlight}</li>
+                  ))}
+                </ul>
               </div>
-              <span className="exp-period">{exp.period}</span>
             </div>
-            <p className="text-secondary mb-4 italic flex items-center gap-2">
-              <MapPin size={14} /> {exp.location}
-            </p>
-            <ul className="exp-highlights">
-              {exp.highlights.map((h, i) => (
-                <li key={i}>{h}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -93,23 +96,23 @@ const Experience = () => (
 const Skills = () => (
   <section id="skills">
     <div className="container">
-      <SectionHeader title="Technical Skills" subtitle="The tools and technologies I use to build robust software solutions." />
+      <SectionHeader title="Skills" />
       <div className="skills-grid">
         <div className="skill-category">
-          <h4 className="flex items-center gap-2"><div className="w-1 h-1 bg-blue-500 rounded-full"></div> Core Stack</h4>
+          <h4 style={{ fontSize: '1rem', fontWeight: '500', marginBottom: '1rem' }}>Core Stack</h4>
           <div className="skill-tags">
             {data.skills.core.Languages.map(s => <span key={s} className="skill-tag">{s}</span>)}
             {data.skills.core.Frameworks.map(s => <span key={s} className="skill-tag">{s}</span>)}
           </div>
         </div>
         <div className="skill-category">
-          <h4 className="flex items-center gap-2"><div className="w-1 h-1 bg-blue-500 rounded-full"></div> Cloud & Architecture</h4>
+          <h4 style={{ fontSize: '1rem', fontWeight: '500', marginBottom: '1rem' }}>Cloud & Architecture</h4>
           <div className="skill-tags">
             {data.skills.key.map(s => <span key={s} className="skill-tag">{s}</span>)}
           </div>
         </div>
         <div className="skill-category">
-          <h4 className="flex items-center gap-2"><div className="w-1 h-1 bg-blue-500 rounded-full"></div> DevOps (In Training)</h4>
+          <h4 style={{ fontSize: '1rem', fontWeight: '500', marginBottom: '1rem' }}>DevOps</h4>
           <div className="skill-tags">
             {data.skills.inTraining.DevOps.map(s => <span key={s} className="skill-tag">{s}</span>)}
           </div>
@@ -120,28 +123,87 @@ const Skills = () => (
 );
 
 const Education = () => (
-  <section id="education" className="bg-secondary">
+  <section id="education">
     <div className="container">
-      <SectionHeader title="Education" subtitle="My academic background and specialized training." />
-      <div className="education-grid">
-        {data.education.map((edu, idx) => (
-          <div key={idx} className="edu-card">
-            <h3 className="edu-school">{edu.school}</h3>
-            <p className="edu-degree">{edu.degree}</p>
-          </div>
-        ))}
-      </div>
-      
-      <div className="certs-container">
-        <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
-          <div className="w-8 h-1 bg-accent-primary rounded-full"></div>
-          Professional Certifications
-        </h3>
-        <div className="grid lg:grid-cols-2 gap-4">
-          {data.certifications.map((cert, idx) => (
-            <div key={idx} className="cert-card">
-              <span className="cert-name">{cert.name}</span>
+      <div className="education-layout">
+        <div className="education-header-wrapper">
+          <h2 className="education-title">Education<span className="title-dash"></span></h2>
+        </div>
+        <div className="education-list">
+          {data.education.map((edu, idx) => (
+            <div key={idx} className="education-card">
+              <div className="education-card-header">
+                <div>
+                  <h3 className="education-degree">{edu.degree}</h3>
+                  <p className="education-school">{edu.school}</p>
+                </div>
+                <span className="education-date">{edu.period}</span>
+              </div>
+              <ul className="education-highlights">
+                {edu.highlights.map((highlight, i) => (
+                  <li key={i}>{highlight}</li>
+                ))}
+              </ul>
             </div>
+          ))}
+          
+          <div className="certs-inline-container">
+            <h3 style={{ fontSize: '1.25rem', fontWeight: '500', marginBottom: '1.5rem' }}>
+              Certifications
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {data.certifications.map((cert, idx) => (
+                <div key={idx} style={{ 
+                  padding: '1rem', 
+                  background: 'var(--card-bg)', 
+                  border: '1px solid var(--border-color)', 
+                  borderRadius: '0.5rem',
+                  fontSize: '0.875rem',
+                  color: 'var(--text-primary)'
+                }}>
+                  {cert.name}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+const Projects = () => (
+  <section id="projects">
+    <div className="container">
+      <div className="projects-layout">
+        <div className="projects-header-wrapper">
+          <h2 className="projects-title">Projects<span className="title-dash"></span></h2>
+        </div>
+        <div className="projects-list">
+          {data.projects.map((project) => (
+            <a 
+              key={project.id} 
+              href={project.link} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="project-row-card no-underline"
+            >
+              <div className="project-row-content">
+                <span className="project-number">{project.id}</span>
+                <h3 className="project-row-title">{project.title}</h3>
+                <p className="project-row-desc">{project.description}</p>
+                <div className="project-row-tags">
+                  {project.technologies.map(tag => (
+                    <span key={tag} className="project-row-tag">{tag}</span>
+                  ))}
+                </div>
+              </div>
+              <div className="project-row-arrow">
+                <div className="arrow-circle">
+                  <ExternalLink size={18} />
+                </div>
+              </div>
+            </a>
           ))}
         </div>
       </div>
@@ -152,35 +214,42 @@ const Education = () => (
 const About = () => (
   <section id="about">
     <div className="container">
-      <div className="about-grid">
-        <div className="about-card animate-fade-in">
-          <SectionHeader title="About Me" />
-          <p className="about-summary">
-            {data.personal.summary}
-          </p>
-          <div className="contact-pill-grid">
-            <a href={`mailto:${data.personal.email}`} className="contact-pill">
-              <div className="text-accent-primary"><Mail size={20} /></div>
-              <span>{data.personal.email}</span>
-            </a>
-            <div className="contact-pill">
-              <div className="text-accent-primary"><Phone size={20} /></div>
-              <span>{data.personal.phone}</span>
-            </div>
+      <SectionHeader title="About Me" />
+      <p className="about-summary">
+        {data.personal.summary}
+      </p>
+      <div className="contact-pill-grid" style={{ marginBottom: '4rem' }}>
+        <a href={`mailto:${data.personal.email}`} className="contact-pill">
+          <div style={{ color: 'var(--text-secondary)' }}><Mail size={18} /></div>
+          <span>{data.personal.email}</span>
+        </a>
+        <div className="contact-pill">
+          <div style={{ color: 'var(--text-secondary)' }}><Phone size={18} /></div>
+          <span>{data.personal.phone}</span>
+        </div>
+      </div>
+      <div style={{ marginBottom: '2rem' }}>
+        <h3 style={{ fontSize: '1.25rem', fontWeight: '500' }}>Skills</h3>
+      </div>
+      <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+        <div className="skill-category" style={{ flex: '1', minWidth: '280px' }}>
+          <h4 style={{ fontSize: '1rem', fontWeight: '500', marginBottom: '1rem' }}>Core Stack</h4>
+          <div className="skill-tags">
+            {data.skills.core.Languages.map(s => <span key={s} className="skill-tag">{s}</span>)}
+            {data.skills.core.Frameworks.map(s => <span key={s} className="skill-tag">{s}</span>)}
           </div>
         </div>
-        <div className="about-visual animate-fade-in">
-          <div className="visual-box primary">
-             <p className="text-3xl font-black mb-1">10+</p>
-             <p className="text-secondary text-sm uppercase tracking-wider">Years Experience</p>
+        <div className="skill-category" style={{ flex: '1', minWidth: '280px' }}>
+          <h4 style={{ fontSize: '1rem', fontWeight: '500', marginBottom: '1rem' }}>Cloud & Architecture</h4>
+          <div className="skill-tags">
+            {data.skills.key.map(s => <span key={s} className="skill-tag">{s}</span>)}
           </div>
-          <a href="https://github.com/sidneyowallah/dholuo-tts" target="_blank" rel="noopener noreferrer" className="visual-box featured-project no-underline">
-             <div className="flex justify-between items-start w-full">
-               <p className="text-2xl font-black mb-1">Dholuo TTS</p>
-               <ExternalLink size={18} className="text-accent-primary" />
-             </div>
-             <p className="text-secondary text-sm uppercase tracking-wider">AI Text-to-Speech Engine</p>
-          </a>
+        </div>
+        <div className="skill-category" style={{ flex: '1', minWidth: '280px' }}>
+          <h4 style={{ fontSize: '1rem', fontWeight: '500', marginBottom: '1rem' }}>DevOps</h4>
+          <div className="skill-tags">
+            {data.skills.inTraining.DevOps.map(s => <span key={s} className="skill-tag">{s}</span>)}
+          </div>
         </div>
       </div>
     </div>
@@ -196,7 +265,7 @@ const Footer = () => (
 );
 
 const App = () => {
-  const [theme, setTheme] = React.useState('light');
+  const [theme, setTheme] = React.useState('dark');
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -212,8 +281,8 @@ const App = () => {
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <Hero />
       <About />
+      <Projects />
       <Experience />
-      <Skills />
       <Education />
       <Footer />
     </div>
